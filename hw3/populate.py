@@ -5,7 +5,7 @@ import mysql.connector
 from faker import Faker
 
 fake = Faker()
-NUM_PROD = 500000
+NUM_PROD = 100000
 NUM_USERS = 10000
 NUM_CATEGORIRES = 1000
 
@@ -86,7 +86,7 @@ def generate(conn):
 
     product_counter = 0
     while product_counter < NUM_PROD:
-        if product_counter == 1000: exit(0) # temporary
+        # if product_counter == 1000: exit(0) # temporary
         products = []
         for _ in range(1000):
             product_name = uuid.uuid4().hex
@@ -101,7 +101,7 @@ def generate(conn):
         conn.commit()
         product_counter += 1000
 
-        cursor.execute("SELECT product_id FROM products")  # add offset
+        cursor.execute(f"SELECT product_id FROM products ORDER BY product_id LIMIT {product_counter - 1000}, 1000")  # add offset
         product_ids = [row[0] for row in cursor.fetchall()]
 
         # assign category
@@ -128,6 +128,8 @@ def generate(conn):
             payment_method = random.choice(['credit_card', 'paypal', 'bank_transfer'])
             cursor.execute(insert_payment_query, (order_id, payment_method, fake.date_this_decade(), total_price))
             conn.commit()
+
+        print(f"Current: {product_counter}")
 
 
 if __name__ == "__main__":
