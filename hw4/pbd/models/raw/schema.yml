@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: user_device
+    columns:
+      - name: user_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: device_model
+  
+  - name: user_os
+    columns:
+      - name: user_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: operating_system
+
+  - name: user_numApps_uTime
+    columns:
+      - name: user_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: num_apps_installed
+      - name: app_usage_time_min_per_day
+
+  - name: user_pw_du
+    columns:
+      - name: user_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: screen_on_time_hours_per_day
+      - name: battery_drain_mAh_per_day
+      - name: data_usage_MB_per_day
+
+  - name: user_general
+    columns:
+      - name: user_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: age
+      - name: gender
+      - name: user_behavior_class
