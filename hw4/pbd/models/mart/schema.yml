@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: avg_time_device
+    columns:
+      - name: device_model
+      - name: avg_app_usage_time
+
+  - name: device_age_gen
+    columns:
+      - name: device_model
+      - name: age_group
+      - name: gender
+      - name: num_users
+
+  - name: os_usage_age
+    columns:
+      - name: age_group
+      - name: operating_system
+      - name: num_users
+
+  - name: pw_to_scr_time
+    columns:
+      - name: device_model
+      - name: avg_screen_on_time
+      - name: avg_battery_drain
+
+  - name: usage_by_age
+    columns:
+      - name: age_group
+      - name: avg_app_usage_time
